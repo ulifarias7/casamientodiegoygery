@@ -40,7 +40,7 @@ function App() {
       <div className="hero-image" role="img" aria-label="Pareja abrazada en un jardín al atardecer" />
       <div className="hero-wash" />
       <div className="hero-content">
-        <p className="eyebrow light"><span/> UNA HISTORIA, UN SÍ, UNA VIDA <span/></p>
+        <p className="eyebrow light"><span/> UNA HISTORIA DE AMOR QUE RECIÉN COMIENZA <span/></p>
         <h1>Diego <i>&</i><br/>Gery</h1>
         <p className="hero-date">24 <span>·</span> ENERO <span>·</span> 2027</p>
         <a className="hero-cta" href="#historia">NOS CASAMOS <ArrowDown size={15}/></a>
@@ -50,28 +50,28 @@ function App() {
     </section>
 
     <section className="intro section-pad" id="historia">
-      <p className="eyebrow reveal"><span/> CON EL CORAZÓN LLENO <span/></p>
-      <h2 className="reveal">Hay días que se recuerdan.<br/><em>Y hay días que lo cambian todo.</em></h2>
-      <p className="intro-copy reveal">Después de tantas historias compartidas, queremos celebrar el comienzo de nuestra más linda aventura junto a las personas que más queremos.</p>
-      <div className="floral-mark reveal">✳</div>
+      <p className="eyebrow reveal"><span/> UNA HISTORIA HECHA DE DOS <span/></p>
+      <h2 className="reveal">De todos los caminos,<br/><em>elegimos caminar juntos.</em></h2>
+      <p className="intro-copy reveal">Cada risa, cada abrazo y cada pequeño momento nos trajo hasta acá. Hoy queremos celebrar nuestro amor con las personas que hacen nuestra vida más linda.</p>
+      <div className="floral-mark reveal">♡</div>
     </section>
 
     <section className="wish-section" aria-label="Una frase sobre el amor">
       <div className="wish-glow wish-glow-one"/><div className="wish-glow wish-glow-two"/>
       <div className="wish-orbit wish-orbit-one"/><div className="wish-orbit wish-orbit-two"/>
-      <div className="wish-stars" aria-hidden="true">{Array.from({ length: 26 }, (_, index) => <span key={index} style={{ left: `${(index * 47 + 13) % 100}%`, top: `${(index * 31 + 9) % 100}%`, '--delay': `${(index % 9) * -0.8}s`, '--duration': `${5 + (index % 6)}s` }}>{index % 5 === 0 ? '✦' : '·'}</span>)}</div>
-      <div className="wish-content"><p className="eyebrow"><span/> UN AMOR PARA TODA LA VIDA <span/></p><h2>“El mejor lugar<br/>siempre será <em>juntos.</em>”</h2><div className="wish-divider"><span/>✳<span/></div><p className="wish-signature">DIEGO <i>&</i> GERY</p></div>
+      <div className="wish-stars" aria-hidden="true">{Array.from({ length: 26 }, (_, index) => <span className={index % 7 === 0 ? 'heart-star' : ''} key={index} style={{ left: `${(index * 47 + 13) % 100}%`, top: `${(index * 31 + 9) % 100}%`, '--delay': `${(index % 9) * -0.8}s`, '--duration': `${5 + (index % 6)}s` }}>{index % 7 === 0 ? '♡' : index % 5 === 0 ? '✦' : '·'}</span>)}</div>
+      <div className="wish-content"><p className="eyebrow"><span/> UN AMOR PARA TODA LA VIDA <span/></p><h2>Nos elegimos cada día.<br/><em>Hoy, para toda la vida.</em></h2><div className="wish-divider"><span/>♡<span/></div><p className="wish-signature">DIEGO <i>&</i> GERY</p></div>
       <span className="wish-coordinate">24° 01′ 2027 — EL COMIENZO</span>
     </section>
 
     <section className="countdown section-pad reveal">
-      <div className="countdown-title"><span className="eyebrow">FALTA CADA VEZ MENOS</span><h2>La cuenta regresiva</h2></div>
+      <div className="countdown-title"><span className="eyebrow">FALTA CADA VEZ MENOS</span><h2>La cuenta regresiva</h2><p className="countdown-subtitle">Cada día nos acerca a nuestro “sí, quiero”.</p></div>
       <div className="timer">{[[days,'DÍAS'],[hours,'HORAS'],[minutes,'MIN'],[seconds,'SEG']].map(([num,label])=><div className="time-unit" key={label}><strong>{String(num).padStart(2,'0')}</strong><span>{label}</span></div>)}</div>
       <div className="countdown-flower">✳</div>
     </section>
 
     <section className="tables section-pad" id="mesas">
-      <div className="tables-heading reveal"><p className="eyebrow"><span/> CADA LUGAR, CON CARIÑO <span/></p><h2>Así vamos preparando la celebración</h2><p>Un vistazo a la organización de las mesas.</p></div>
+      <div className="tables-heading reveal"><p className="eyebrow"><span/> CADA LUGAR, CON CARIÑO <span/></p><h2>Una noche para guardar en el corazón</h2><p>Estamos preparando cada detalle para compartirla con vos.</p></div>
       <div className="table-stats reveal"><article><strong>{tableStatus.length}</strong><span>MESAS</span></article><article><strong>{occupiedSeats}</strong><span>LUGARES OCUPADOS</span></article><article><strong>{totalSeats - occupiedSeats}</strong><span>LUGARES DISPONIBLES</span></article></div>
       <div className="floor-layout reveal">
         <div className="floor-layout-header"><div><span className="floor-kicker">DISTRIBUCIÓN DEL SALÓN</span><strong>Plano de mesas</strong></div><div className="seat-legend"><span><i className="legend-dot is-occupied"/> OCUPADO</span><span><i className="legend-dot"/> DISPONIBLE</span></div></div>
@@ -101,13 +101,13 @@ function App() {
         <article className="detail-card reveal"><div className="detail-top"><span>01 / CEREMONIA</span><CalendarDays size={20}/></div><div className="detail-icon">✳</div><h3>La ceremonia</h3><p className="detail-date">DOMINGO, 24 DE ENERO<br/>16:30 H</p><div className="rule"/><p>La Punta<br/>San Luis, Argentina</p><a className="text-link" href="https://maps.google.com/?q=La+Punta+San+Luis+Argentina" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
         <article className="detail-card detail-card-dark reveal"><div className="detail-top"><span>02 / CELEBRACIÓN</span><Sparkles size={20}/></div><div className="detail-icon">✳</div><h3>La fiesta</h3><p className="detail-date">BRINDIS, CENA<br/>Y BAILE HASTA TARDE</p><div className="rule"/><p>En el mismo lugar<br/>Después de la ceremonia</p><a className="text-link" href="#confirmar">CONFIRMÁ TU ASISTENCIA <ArrowRight size={14}/></a></article>
       </div>
-      <p className="details-foot reveal">Un día para celebrar sin apuro. <i>Una noche para recordar siempre.</i></p>
+      <p className="details-foot reveal">El mejor regalo será tenerte cerca. <i>Lo demás lo pone el amor.</i></p>
     </section>
 
-    <section className="rsvp" id="confirmar"><div className="rsvp-image"/><div className="rsvp-content reveal"><p className="eyebrow light"><span/> NOS ENCANTARÍA VERTE <span/></p><h2>¿Venís a<br/><i>celebrar?</i></h2><p>Contanos cuanto antes si nos acompañás.</p><a className="rsvp-button" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Diego%20y%20Gery." target="_blank" rel="noreferrer">CONFIRMAR POR WHATSAPP <ArrowRight size={16}/></a></div><span className="rsvp-stamp">D <span>✳</span> G</span></section>
+    <section className="rsvp" id="confirmar"><div className="rsvp-image"/><div className="rsvp-content reveal"><p className="eyebrow light"><span/> NOS ENCANTARÍA VERTE <span/></p><h2>¿Venís a<br/><i>celebrar?</i></h2><p>Tu abrazo, tu risa y tu compañía van a ser el regalo más lindo.</p><a className="rsvp-button" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Diego%20y%20Gery." target="_blank" rel="noreferrer">CONFIRMAR POR WHATSAPP <ArrowRight size={16}/></a></div><span className="rsvp-stamp">D <span>♡</span> G</span></section>
 
     <section className="guest-photos section-pad" id="fotos">
-      <div className="photos-heading reveal"><p className="eyebrow"><span/> MOMENTOS PARA VOLVER A VER <span/></p><h2>Compartí tus fotos</h2><p>Cuando termine la fiesta, subí tus fotos favoritas para guardarlas entre todos.</p></div>
+      <div className="photos-heading reveal"><p className="eyebrow"><span/> MOMENTOS PARA VOLVER A VER <span/></p><h2>Compartí tus fotos</h2><p>Ayudanos a guardar cada sonrisa, cada abrazo y cada instante de este día tan nuestro.</p></div>
       {googleDriveFolderUrl
         ? <a className="upload-button" href={googleDriveFolderUrl} target="_blank" rel="noreferrer"><Upload size={16}/>SUBIR FOTOS</a>
         : <button className="upload-button is-disabled" type="button" disabled><Upload size={16}/>SUBIR FOTOS</button>}
