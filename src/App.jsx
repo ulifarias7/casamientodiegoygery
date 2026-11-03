@@ -45,7 +45,7 @@ function App() {
         <p className="hero-date">24 <span>·</span> ENERO <span>·</span> 2027</p>
         <a className="hero-cta" href="#historia">NOS CASAMOS <ArrowDown size={15}/></a>
       </div>
-      <div className="hero-note"><span>BUENOS AIRES, ARGENTINA</span><span>24.01.27</span></div>
+      <div className="hero-note"><span>LA PUNTA, SAN LUIS, ARGENTINA</span><span>24.01.27</span></div>
       <div className="hero-side">EL COMIENZO DE SIEMPRE</div>
     </section>
 
@@ -98,7 +98,7 @@ function App() {
     <section className="details section-pad" id="detalles">
       <div className="details-heading reveal"><p className="eyebrow"><span/> EL DÍA QUE SOÑAMOS <span/></p><h2>Guardá la fecha</h2><p>Nos encantaría que seas parte de este momento.</p></div>
       <div className="detail-grid">
-        <article className="detail-card reveal"><div className="detail-top"><span>01 / CEREMONIA</span><CalendarDays size={20}/></div><div className="detail-icon">✳</div><h3>La ceremonia</h3><p className="detail-date">DOMINGO, 24 DE ENERO<br/>16:30 H</p><div className="rule"/><p>Estancia La Candelaria<br/>Lobos, Buenos Aires</p><a className="text-link" href="https://maps.google.com/?q=Estancia+La+Candelaria+Lobos" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
+        <article className="detail-card reveal"><div className="detail-top"><span>01 / CEREMONIA</span><CalendarDays size={20}/></div><div className="detail-icon">✳</div><h3>La ceremonia</h3><p className="detail-date">DOMINGO, 24 DE ENERO<br/>16:30 H</p><div className="rule"/><p>La Punta<br/>San Luis, Argentina</p><a className="text-link" href="https://maps.google.com/?q=La+Punta+San+Luis+Argentina" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
         <article className="detail-card detail-card-dark reveal"><div className="detail-top"><span>02 / CELEBRACIÓN</span><Sparkles size={20}/></div><div className="detail-icon">✳</div><h3>La fiesta</h3><p className="detail-date">BRINDIS, CENA<br/>Y BAILE HASTA TARDE</p><div className="rule"/><p>En el mismo lugar<br/>Después de la ceremonia</p><a className="text-link" href="#confirmar">CONFIRMÁ TU ASISTENCIA <ArrowRight size={14}/></a></article>
       </div>
       <p className="details-foot reveal">Un día para celebrar sin apuro. <i>Una noche para recordar siempre.</i></p>
