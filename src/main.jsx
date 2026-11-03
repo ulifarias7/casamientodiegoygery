@@ -8,5 +8,6 @@ import './table-plan-polish.css';
 import './table-plan-layers.css';
 import './site-theme.css';
 import './wish-section.css';
+import './rounded-ui.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
