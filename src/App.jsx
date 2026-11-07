@@ -45,7 +45,7 @@ function App() {
         <p className="hero-date">24 <span>·</span> ENERO <span>·</span> 2027</p>
         <a className="hero-cta" href="#historia">NOS CASAMOS <ArrowDown size={15}/></a>
       </div>
-      <div className="hero-note"><span>LA PUNTA, SAN LUIS, ARGENTINA</span><span>24.01.27</span></div>
+      <div className="hero-note"><span>SAN LUIS CAPITAL, ARGENTINA</span><span>24.01.27</span></div>
       {/* <div className="hero-side">EL COMIENZO DE SIEMPRE</div> */}
     </section>
 
@@ -98,7 +98,7 @@ function App() {
     <section className="details section-pad" id="detalles">
       <div className="details-heading reveal"><p className="eyebrow"><span/> EL DÍA QUE SOÑAMOS <span/></p><h2>Guardá la fecha</h2><p>Nos encantaría que seas parte de este momento.</p></div>
       <div className="detail-grid">
-        <article className="detail-card detail-card-dark reception-card reveal"><div className="detail-top"><span>EL GRAN ENCUENTRO</span><CalendarDays size={20}/></div><div className="detail-icon">♡</div><h3>Recepción</h3><p className="detail-date">DOMINGO, 24 DE ENERO DE 2027<br/>19:00 HS</p><div className="rule"/><p className="reception-address"><span>LUGAR</span>Av. del Fundador 1100<br/>La Punta, San Luis</p><p className="reception-venue">Salón Las Marías<br/><em>Guiñez Eventos</em></p><a className="text-link" href="https://maps.google.com/?q=Sal%C3%B3n+Las+Mar%C3%ADas+Gui%C3%B1ez+Eventos%2C+Av.+del+Fundador+1100%2C+La+Punta%2C+San+Luis" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
+        <article className="detail-card detail-card-dark reception-card reveal"><div className="detail-top"><span>EL GRAN ENCUENTRO</span><CalendarDays size={20}/></div><div className="detail-icon">♡</div><h3>Recepción</h3><p className="detail-date">DOMINGO, 24 DE ENERO DE 2027<br/>19:00 HS</p><div className="rule"/><p className="reception-address"><span>LUGAR</span>Av. del Fundador 1100<br/>San Luis Capital</p><p className="reception-venue">Salón Las Marías<br/><em>Guiñez Eventos</em></p><a className="text-link" href="https://maps.google.com/?q=Sal%C3%B3n+Las+Mar%C3%ADas+Gui%C3%B1ez+Eventos%2C+Av.+del+Fundador+1100%2C+San+Luis+Capital" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
       </div>
       <p className="details-foot reveal">El mejor regalo será tenerte cerca. <i>Lo demás lo pone el amor.</i></p>
     </section>
