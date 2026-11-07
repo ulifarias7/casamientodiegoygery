@@ -25,6 +25,10 @@ function App() {
     playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
   }
 
+  function startMusicOnLoad() {
+    playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+  }
+
   useEffect(() => {
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
@@ -115,7 +119,7 @@ function App() {
 
     <footer className="footer"><a className="monogram" href="#inicio">D<span>✳</span>G</a><p>HECHO CON AMOR, PARA COMPARTIR CON VOS</p><a className="back-top" href="#inicio">VOLVER ARRIBA ↑</a></footer>
     <button className="music-button" onClick={toggleMusic} aria-label="Reproducir canción" title="Reproducir canción">🎵</button>
-    <iframe className="youtube-audio" ref={playerRef} title="Reproductor de música" src={youtubeEmbedUrl} allow="autoplay; encrypted-media" referrerPolicy="strict-origin-when-cross-origin" aria-hidden="true" tabIndex={-1} />
+    <iframe className="youtube-audio" ref={playerRef} title="Reproductor de música" src={youtubeEmbedUrl} allow="autoplay; encrypted-media" referrerPolicy="strict-origin-when-cross-origin" aria-hidden="true" tabIndex={-1} onLoad={startMusicOnLoad} />
   </main>;
 }
 
