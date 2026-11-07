@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowRight, CalendarDays, Plus, Upload, X } from 'lucide-react';
+import { ArrowDown, ArrowRight, CalendarDays, Music2, Plus, Send, Upload, X } from 'lucide-react';
 
 const weddingDate = new Date('2027-01-24T19:00:00-03:00');
 const youtubeEmbedUrl = 'https://www.youtube.com/embed/DPHtuiq6jeM?autoplay=1&playsinline=1&controls=0&rel=0&enablejsapi=1';
@@ -25,6 +25,10 @@ function App() {
   const [familyName, setFamilyName] = useState('');
   const [attendees, setAttendees] = useState([{ id: 1, name: '', menu: 'general' }]);
   const [formError, setFormError] = useState('');
+  const [songSuggestion, setSongSuggestion] = useState('');
+  const [suggestedBy, setSuggestedBy] = useState('');
+  const [songError, setSongError] = useState('');
+  const songInputRef = useRef(null);
 
   function toggleMusic() {
     playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
@@ -74,6 +78,26 @@ function App() {
       '──────────────',
       '¡Gracias por invitarnos! Ya queremos celebrar con ustedes. ✨',
     ].join('\n');
+    window.open(`https://wa.me/5491168132737?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+  }
+
+  function sendSongSuggestion(event) {
+    event.preventDefault();
+    if (!songSuggestion.trim()) {
+      setSongError('Por favor, escribí el nombre de la canción o pegá su enlace.');
+      songInputRef.current?.focus();
+      return;
+    }
+    setSongError('');
+    const message = [
+      '¡Hola, Diego y Gery! 🎶',
+      '',
+      'Les quiero recomendar este tema para la fiesta:',
+      `🎵 ${songSuggestion.trim()}`,
+      suggestedBy.trim() ? `💚 De parte de ${suggestedBy.trim()}.` : '',
+      '',
+      '¡Ojalá suene esa noche! ✨',
+    ].filter(Boolean).join('\n');
     window.open(`https://wa.me/5491168132737?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   }
 
@@ -134,6 +158,32 @@ function App() {
         <article className="detail-card detail-card-dark reception-card reveal"><div className="detail-top"><span>EL GRAN ENCUENTRO</span><CalendarDays size={20}/></div><div className="detail-icon">♡</div><h3>Recepción</h3><p className="detail-date">DOMINGO, 24 DE ENERO DE 2027<br/>19:00 HS</p><div className="rule"/><p className="reception-address"><span>LUGAR</span>Av. del Fundador 1100<br/>San Luis Capital</p><p className="reception-venue">Salón Las Marías<br/><em>Guiñez Eventos</em></p><a className="text-link" href="https://maps.google.com/?q=Sal%C3%B3n+Las+Mar%C3%ADas+Gui%C3%B1ez+Eventos%2C+Av.+del+Fundador+1100%2C+San+Luis+Capital" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
       </div>
       <p className="details-foot reveal">El mejor regalo será tenerte cerca. <i>Lo demás lo pone el amor.</i></p>
+    </section>
+
+    <section className="dress-code section-pad" id="vestimenta">
+      <div className="dress-code-card reveal">
+        <p className="eyebrow"><span/> UN TOQUE DE ELEGANCIA <span/></p>
+        <div className="dress-code-mark" aria-hidden="true">✧</div>
+        <p className="dress-code-label">DRESS CODE</p>
+        <h2>Elegante <em>sport</em></h2>
+        <div className="green-palette" aria-label="Tonos verdes sugeridos"><span/><span/><span/><span/><span/></div>
+        <p className="dress-code-note">Los tonos verdes son bienvenidos si te gustan.<br/>Elegí un look cómodo y disfrutá la celebración.</p>
+      </div>
+    </section>
+
+    <section className="song-suggestions section-pad" id="temas">
+      <div className="song-suggestion-card reveal">
+        <div className="song-record" aria-hidden="true"><span><Music2 size={20}/></span></div>
+        <p className="eyebrow"><span/> UNA CANCIÓN PARA ESA NOCHE <span/></p>
+        <h2>La música también<br/><em>la elegimos entre todos.</em></h2>
+        <p className="song-suggestion-copy">¿Qué tema te gustaría escuchar en la fiesta?<br/>Puede ser el título o un enlace de YouTube o Spotify.</p>
+        <form className="song-suggestion-form" onSubmit={sendSongSuggestion} noValidate>
+          <label className="song-field"><span>TEMA O ENLACE</span><input ref={songInputRef} type="text" value={songSuggestion} onChange={event => { setSongSuggestion(event.target.value); setSongError(''); }} placeholder="Título, artista o link de YouTube / Spotify" aria-invalid={Boolean(songError)} aria-describedby={songError ? 'song-error' : undefined}/></label>
+          {songError && <p className="song-error" id="song-error" role="alert">{songError}</p>}
+          <label className="song-field"><span>¿QUIÉN LA PIDE? <small>OPCIONAL</small></span><input type="text" value={suggestedBy} onChange={event => setSuggestedBy(event.target.value)} placeholder="Tu nombre o familia"/></label>
+          <button className="song-send-button" type="submit">ENVIAR CANCIÓN <Send size={15}/></button>
+        </form>
+      </div>
     </section>
 
     <section className="rsvp" id="confirmar"><div className="rsvp-image"/><div className="rsvp-content reveal"><p className="eyebrow light"><span/> NOS ENCANTARÍA VERTE <span/></p><h2>¿Venís a<br/><i>celebrar?</i></h2><p className="rsvp-intro">Tu abrazo, tu risa y tu compañía van a ser el regalo más lindo.</p>

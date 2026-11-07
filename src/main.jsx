@@ -12,5 +12,8 @@ import './story-section.css';
 import './countdown-polish.css';
 import './reception-card.css';
 import './menus-rsvp.css';
+import './dress-code.css';
+import './song-suggestions.css';
+import './song-validation.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
