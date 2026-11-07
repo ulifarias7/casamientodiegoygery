@@ -15,5 +15,7 @@ import './menus-rsvp.css';
 import './dress-code.css';
 import './song-suggestions.css';
 import './song-validation.css';
+import './browser-compat.css';
+import './dress-code-polish.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
