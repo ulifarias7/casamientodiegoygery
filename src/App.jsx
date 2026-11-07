@@ -40,20 +40,20 @@ function App() {
       <div className="hero-image" role="img" aria-label="Pareja abrazada en un jardín al atardecer" />
       <div className="hero-wash" />
       <div className="hero-content">
-        <p className="eyebrow light"><span/> UNA HISTORIA DE AMOR QUE RECIÉN COMIENZA <span/></p>
+        <p className="eyebrow light"><span/> AMARNOS ES NUESTRO PLAN PERFECTO <span/></p>
         <h1>Diego <i>&</i><br/>Gery</h1>
         <p className="hero-date">24 <span>·</span> ENERO <span>·</span> 2027</p>
         <a className="hero-cta" href="#historia">NOS CASAMOS <ArrowDown size={15}/></a>
       </div>
       <div className="hero-note"><span>LA PUNTA, SAN LUIS, ARGENTINA</span><span>24.01.27</span></div>
-      <div className="hero-side">EL COMIENZO DE SIEMPRE</div>
+      {/* <div className="hero-side">EL COMIENZO DE SIEMPRE</div> */}
     </section>
 
     <section className="intro section-pad" id="historia">
-      <p className="eyebrow reveal"><span/> UNA HISTORIA HECHA DE DOS <span/></p>
-      <h2 className="reveal">De todos los caminos,<br/><em>elegimos caminar juntos.</em></h2>
-      <p className="intro-copy reveal">Cada risa, cada abrazo y cada pequeño momento nos trajo hasta acá. Hoy queremos celebrar nuestro amor con las personas que hacen nuestra vida más linda.</p>
-      <div className="floral-mark reveal">♡</div>
+      <p className="eyebrow reveal"><span/> 21 AÑOS DE HISTORIAS COMPARTIDAS <span/></p>
+      <h2 className="story-heading reveal"><span>21 años caminando juntos,</span><br/><em>eligiéndonos cada día.</em></h2>
+      <p className="intro-copy reveal">Compartimos la vida, los sueños y la alegría de una familia maravillosa. Hoy decidimos dar el sí y queremos celebrar este nuevo capítulo con vos.</p>
+      <div className="story-seal reveal"><span>♡</span><small>JUNTOS, SIEMPRE</small></div>
     </section>
 
     <section className="wish-section" aria-label="Una frase sobre el amor">
@@ -65,7 +65,7 @@ function App() {
     </section>
 
     <section className="countdown section-pad reveal">
-      <div className="countdown-title"><span className="eyebrow">FALTA CADA VEZ MENOS</span><h2>La cuenta regresiva</h2><p className="countdown-subtitle">Cada día nos acerca a nuestro “sí, quiero”.</p></div>
+      <div className="countdown-title"><span className="eyebrow">FALTA CADA VEZ MENOS</span><h2>Hasta nuestro<br/><em>gran día.</em></h2><p className="countdown-subtitle">Cada día nos acerca a nuestro “sí, quiero”.</p><div className="countdown-date-chip"><span>♡</span> DOMINGO · 24 ENERO 2027 <span>♡</span></div></div>
       <div className="timer">{[[days,'DÍAS'],[hours,'HORAS'],[minutes,'MIN'],[seconds,'SEG']].map(([num,label])=><div className="time-unit" key={label}><strong>{String(num).padStart(2,'0')}</strong><span>{label}</span></div>)}</div>
       <div className="countdown-flower">✳</div>
     </section>

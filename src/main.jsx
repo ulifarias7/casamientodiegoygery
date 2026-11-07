@@ -11,5 +11,7 @@ import './wish-section.css';
 import './rounded-ui.css';
 import './refinement.css';
 import './romantic.css';
+import './story-section.css';
+import './countdown-polish.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
