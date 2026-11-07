@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowRight, CalendarDays, Sparkles, Upload } from 'lucide-react';
+import { ArrowDown, ArrowRight, CalendarDays, Upload } from 'lucide-react';
 
-const weddingDate = new Date('2027-01-24T16:30:00-03:00');
+const weddingDate = new Date('2027-01-24T19:00:00-03:00');
 const youtubeEmbedUrl = 'https://www.youtube.com/embed/DPHtuiq6jeM?autoplay=1&playsinline=1&controls=0&rel=0&enablejsapi=1';
 const googleDriveFolderUrl = ''; // Pegá aquí el enlace compartido de la carpeta de fotos.
 const tableStatus = [
@@ -98,8 +98,7 @@ function App() {
     <section className="details section-pad" id="detalles">
       <div className="details-heading reveal"><p className="eyebrow"><span/> EL DÍA QUE SOÑAMOS <span/></p><h2>Guardá la fecha</h2><p>Nos encantaría que seas parte de este momento.</p></div>
       <div className="detail-grid">
-        <article className="detail-card reveal"><div className="detail-top"><span>01 / CEREMONIA</span><CalendarDays size={20}/></div><div className="detail-icon">✳</div><h3>La ceremonia</h3><p className="detail-date">DOMINGO, 24 DE ENERO<br/>16:30 H</p><div className="rule"/><p>La Punta<br/>San Luis, Argentina</p><a className="text-link" href="https://maps.google.com/?q=La+Punta+San+Luis+Argentina" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
-        <article className="detail-card detail-card-dark reveal"><div className="detail-top"><span>02 / CELEBRACIÓN</span><Sparkles size={20}/></div><div className="detail-icon">✳</div><h3>La fiesta</h3><p className="detail-date">BRINDIS, CENA<br/>Y BAILE HASTA TARDE</p><div className="rule"/><p>En el mismo lugar<br/>Después de la ceremonia</p><a className="text-link" href="#confirmar">CONFIRMÁ TU ASISTENCIA <ArrowRight size={14}/></a></article>
+        <article className="detail-card detail-card-dark reception-card reveal"><div className="detail-top"><span>EL GRAN ENCUENTRO</span><CalendarDays size={20}/></div><div className="detail-icon">♡</div><h3>Recepción</h3><p className="detail-date">DOMINGO, 24 DE ENERO DE 2027<br/>19:00 HS</p><div className="rule"/><p className="reception-address"><span>LUGAR</span>Av. del Fundador 1100<br/>La Punta, San Luis</p><p className="reception-venue">Salón Las Marías<br/><em>Guiñez Eventos</em></p><a className="text-link" href="https://maps.google.com/?q=Sal%C3%B3n+Las+Mar%C3%ADas+Gui%C3%B1ez+Eventos%2C+Av.+del+Fundador+1100%2C+La+Punta%2C+San+Luis" target="_blank" rel="noreferrer">CÓMO LLEGAR <ArrowRight size={14}/></a></article>
       </div>
       <p className="details-foot reveal">El mejor regalo será tenerte cerca. <i>Lo demás lo pone el amor.</i></p>
     </section>

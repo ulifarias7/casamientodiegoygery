@@ -13,5 +13,6 @@ import './refinement.css';
 import './romantic.css';
 import './story-section.css';
 import './countdown-polish.css';
+import './reception-card.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
