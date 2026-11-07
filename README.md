@@ -1,17 +1,8 @@
 # Invitación de Diego y Gery
 
-## Mesas y lugares
+## Confirmación y menús
 
-Editá `tableStatus` al inicio de `src/App.jsx`. Por ejemplo:
-
-```js
-const tableStatus = [
-  { name: 'Mesa 1', capacity: 8, occupied: 5 },
-  { name: 'Mesa 2', capacity: 10, occupied: 7 },
-];
-```
-
-La página calcula automáticamente cantidad de mesas, lugares ocupados y lugares disponibles.
+Cada familia puede sumar o quitar invitados, elegir un menú por persona y preparar un mensaje de confirmación en WhatsApp. Las opciones están en `menuOptions` al inicio de `src/App.jsx`. El mensaje se abre como borrador para que la familia lo revise y lo envíe.
 
 ## Fotos de los invitados
 

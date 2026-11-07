@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDown, ArrowRight, CalendarDays, Upload } from 'lucide-react';
+import { ArrowDown, ArrowRight, CalendarDays, Plus, Upload, X } from 'lucide-react';
 
 const weddingDate = new Date('2027-01-24T19:00:00-03:00');
 const youtubeEmbedUrl = 'https://www.youtube.com/embed/DPHtuiq6jeM?autoplay=1&playsinline=1&controls=0&rel=0&enablejsapi=1';
 const googleDriveFolderUrl = ''; // Pegá aquí el enlace compartido de la carpeta de fotos.
-const tableStatus = [
-  // Editá esta lista: { name: 'Mesa 1', capacity: 8, occupied: 5 }
+const menuOptions = [
+  { value: 'celiaco', name: 'Menú celíaco', note: 'Opción sin TACC', icon: '✧' },
+  { value: 'infantil', name: 'Menú infantil', note: 'Para los más chicos', icon: '♡' },
+  { value: 'general', name: 'Menú general', note: 'Opción clásica', icon: '✳' },
+  { value: 'vegano', name: 'Menú vegano', note: 'Opción basada en plantas', icon: '❋' },
 ];
 
 function useCountdown() {
@@ -18,8 +21,10 @@ function useCountdown() {
 function App() {
   const [days, hours, minutes, seconds] = useCountdown();
   const playerRef = useRef(null);
-  const occupiedSeats = tableStatus.reduce((sum, table) => sum + table.occupied, 0);
-  const totalSeats = tableStatus.reduce((sum, table) => sum + table.capacity, 0);
+  const nextGuestId = useRef(2);
+  const [familyName, setFamilyName] = useState('');
+  const [attendees, setAttendees] = useState([{ id: 1, name: '', menu: 'general' }]);
+  const [formError, setFormError] = useState('');
 
   function toggleMusic() {
     playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
@@ -27,6 +32,49 @@ function App() {
 
   function startMusicOnLoad() {
     playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+  }
+
+  function updateAttendee(id, field, value) {
+    setAttendees(current => current.map(person => person.id === id ? { ...person, [field]: value } : person));
+  }
+
+  function addAttendee() {
+    setAttendees(current => [...current, { id: nextGuestId.current++, name: '', menu: 'general' }]);
+  }
+
+  function removeAttendee(id) {
+    setAttendees(current => current.length > 1 ? current.filter(person => person.id !== id) : current);
+  }
+
+  function confirmAttendance(event) {
+    event.preventDefault();
+    if (!familyName.trim()) {
+      setFormError('Escribí el nombre de tu familia para continuar.');
+      return;
+    }
+    setFormError('');
+    const menuNames = Object.fromEntries(menuOptions.map(option => [option.value, option.name]));
+    const guestLines = attendees.map((person, index) => `   ♡ ${person.name.trim() || `Invitado/a ${index + 1}`}  ·  ${menuNames[person.menu]}`);
+    const message = [
+      '╭────────── 💌 ──────────╮',
+      '*CONFIRMACIÓN DE ASISTENCIA*',
+      '*DIEGO & GERY*',
+      '╰────────────────────────╯',
+      '',
+      '¡Sí, obvio que vamos! 💚',
+      'Qué alegría acompañarlos en este día tan especial.',
+      '',
+      `👨‍👩‍👧‍👦 *FAMILIA:* ${familyName.trim()}`,
+      `👥 *INVITADOS:* ${attendees.length} ${attendees.length === 1 ? 'persona' : 'personas'}`,
+      '',
+      '🍽️ *MENÚ ELEGIDO POR PERSONA*',
+      '──────────────',
+      ...guestLines,
+      '',
+      '──────────────',
+      '¡Gracias por invitarnos! Ya queremos celebrar con ustedes. ✨',
+    ].join('\n');
+    window.open(`https://wa.me/5491168132737?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
   }
 
   useEffect(() => {
@@ -74,29 +122,10 @@ function App() {
       <div className="countdown-flower">✳</div>
     </section>
 
-    <section className="tables section-pad" id="mesas">
-      <div className="tables-heading reveal"><p className="eyebrow"><span/> CADA LUGAR, CON CARIÑO <span/></p><h2>Una noche para guardar en el corazón</h2><p>Estamos preparando cada detalle para compartirla con vos.</p></div>
-      <div className="table-stats reveal"><article><strong>{tableStatus.length}</strong><span>MESAS</span></article><article><strong>{occupiedSeats}</strong><span>LUGARES OCUPADOS</span></article><article><strong>{totalSeats - occupiedSeats}</strong><span>LUGARES DISPONIBLES</span></article></div>
-      <div className="floor-layout reveal">
-        <div className="floor-layout-header"><div><span className="floor-kicker">DISTRIBUCIÓN DEL SALÓN</span><strong>Plano de mesas</strong></div><div className="seat-legend"><span><i className="legend-dot is-occupied"/> OCUPADO</span><span><i className="legend-dot"/> DISPONIBLE</span></div></div>
-      {tableStatus.length > 0
-        ? <div className="table-plan" aria-label="Plano de las mesas">{tableStatus.map(table => {
-          const capacity = Math.max(0, Math.floor(table.capacity));
-          const occupied = Math.min(capacity, Math.max(0, Math.floor(table.occupied)));
-          return <article className="table-plan-card" key={table.name}>
-            <div className="round-table" aria-label={`${table.name}: ${occupied} de ${capacity} lugares ocupados`}>
-              <div className="table-surface"><span>{table.name}</span><small>{occupied}/{capacity}</small></div>
-              {Array.from({ length: capacity }, (_, index) => {
-                const angle = index * 360 / capacity;
-                return <span key={index} className={`chair ${index < occupied ? 'chair-occupied' : ''}`} style={{ transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(-55px) rotate(${-angle}deg)` }} />;
-              })}
-            </div>
-            <p>{occupied} de {capacity} lugares ocupados</p>
-          </article>;
-        })}</div>
-        : <div className="table-plan-empty"><div className="empty-table-drawing"><i/><i/><i/><i/><i/><i/><i/><i/><span>MESA</span></div><p>El plano de las mesas va a aparecer acá.</p></div>}
-        <div className="floor-layout-footer"><span>✳</span> Cada detalle, pensado para compartir <span>✳</span></div>
-      </div>
+    <section className="menus section-pad" id="menus">
+      <div className="menus-heading reveal"><p className="eyebrow"><span/> PENSAMOS EN CADA UNO <span/></p><h2>Un menú para cada invitado</h2><p>Al confirmar, elegí la opción que corresponde a cada persona de tu familia.</p></div>
+      <div className="menu-options">{menuOptions.map((option, index) => <article className="menu-option reveal" key={option.value}><span className="menu-number">0{index + 1}</span><span className="menu-icon">{option.icon}</span><h3>{option.name}</h3><p>{option.note}</p></article>)}</div>
+      <a className="menu-jump" href="#confirmar">ELEGIR MENÚS Y CONFIRMAR <ArrowDown size={15}/></a>
     </section>
 
     <section className="details section-pad" id="detalles">
@@ -107,7 +136,20 @@ function App() {
       <p className="details-foot reveal">El mejor regalo será tenerte cerca. <i>Lo demás lo pone el amor.</i></p>
     </section>
 
-    <section className="rsvp" id="confirmar"><div className="rsvp-image"/><div className="rsvp-content reveal"><p className="eyebrow light"><span/> NOS ENCANTARÍA VERTE <span/></p><h2>¿Venís a<br/><i>celebrar?</i></h2><p>Tu abrazo, tu risa y tu compañía van a ser el regalo más lindo.</p><a className="rsvp-button" href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Diego%20y%20Gery." target="_blank" rel="noreferrer">CONFIRMAR POR WHATSAPP <ArrowRight size={16}/></a></div><span className="rsvp-stamp">D <span>♡</span> G</span></section>
+    <section className="rsvp" id="confirmar"><div className="rsvp-image"/><div className="rsvp-content reveal"><p className="eyebrow light"><span/> NOS ENCANTARÍA VERTE <span/></p><h2>¿Venís a<br/><i>celebrar?</i></h2><p className="rsvp-intro">Tu abrazo, tu risa y tu compañía van a ser el regalo más lindo.</p>
+      <form className="attendance-form" onSubmit={confirmAttendance}>
+        <label className="family-field">Nombre de tu familia o grupo<input type="text" value={familyName} onChange={event => { setFamilyName(event.target.value); setFormError(''); }} placeholder="Ej.: Familia González" autoComplete="family-name" required/></label>
+        <div className="attendee-list"><p className="attendee-heading">MENÚ DE CADA PERSONA</p>{attendees.map((person, index) => <div className="attendee-row" key={person.id}>
+          <span className="attendee-number">{String(index + 1).padStart(2, '0')}</span>
+          <label className="attendee-name"><span>INVITADO/A</span><input value={person.name} onChange={event => updateAttendee(person.id, 'name', event.target.value)} placeholder={`Nombre ${index + 1}`}/></label>
+          <label className="attendee-menu"><span>MENÚ</span><select value={person.menu} onChange={event => updateAttendee(person.id, 'menu', event.target.value)}>{menuOptions.map(option => <option value={option.value} key={option.value}>{option.name}</option>)}</select></label>
+          <button className="remove-attendee" type="button" onClick={() => removeAttendee(person.id)} disabled={attendees.length === 1} aria-label={`Quitar invitado ${index + 1}`}><X size={16}/></button>
+        </div>)}</div>
+        <button className="add-attendee" type="button" onClick={addAttendee}><Plus size={15}/> AGREGAR PERSONA</button>
+        {formError && <p className="form-error" role="alert">{formError}</p>}
+        <button className="rsvp-button" type="submit">CONFIRMAR POR WHATSAPP <ArrowRight size={16}/></button>
+      </form>
+      </div><span className="rsvp-stamp">D <span>♡</span> G</span></section>
 
     <section className="guest-photos section-pad" id="fotos">
       <div className="photos-heading reveal"><p className="eyebrow"><span/> MOMENTOS PARA VOLVER A VER <span/></p><h2>Compartí tus fotos</h2><p>Ayudanos a guardar cada sonrisa, cada abrazo y cada instante de este día tan nuestro.</p></div>
