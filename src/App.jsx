@@ -166,8 +166,7 @@ function App() {
         <div className="dress-code-mark" aria-hidden="true">✧</div>
         <p className="dress-code-label">DRESS CODE</p>
         <h2>Elegante <em>sport</em></h2>
-        <div className="green-palette" aria-label="Tonos verdes sugeridos"><span/><span/><span/><span/><span/></div>
-        <p className="dress-code-note">Los tonos verdes son bienvenidos si te gustan.<br/>Elegí un look cómodo y disfrutá la celebración.</p>
+        <p className="dress-code-note">Elegí un look cómodo y disfrutá la celebración.</p>
       </div>
     </section>
 
