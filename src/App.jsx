@@ -30,12 +30,12 @@ function App() {
   const [songError, setSongError] = useState('');
   const songInputRef = useRef(null);
 
-  function toggleMusic() {
+  function requestMusicPlayback() {
     playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
   }
 
   function startMusicOnLoad() {
-    playerRef.current?.contentWindow?.postMessage(JSON.stringify({ event: 'command', func: 'playVideo', args: [] }), '*');
+    requestMusicPlayback();
   }
 
   function updateAttendee(id, field, value) {
@@ -114,7 +114,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  return <main>
+  return <main onClickCapture={requestMusicPlayback}>
     <nav className="nav"><a className="monogram" href="#inicio">D<span><Heart size={11}/></span>G</a><a href="#detalles" className="nav-link">LA CELEBRACIÓN <ArrowRight size={14}/></a></nav>
 
     <section className="hero" id="inicio">
@@ -215,8 +215,8 @@ function App() {
     </section>
 
     <footer className="footer"><a className="monogram" href="#inicio">D<span><Heart size={11}/></span>G</a><p>HECHO CON AMOR, PARA COMPARTIR CON VOS</p><a className="back-top" href="#inicio">VOLVER ARRIBA ↑</a></footer>
-    <button className="music-button" onClick={toggleMusic} aria-label="Reproducir canción" title="Reproducir canción"><Music2 size={21} strokeWidth={1.7}/></button>
-    <iframe className="youtube-audio" ref={playerRef} title="Reproductor de música" src={youtubeEmbedUrl} allow="autoplay; encrypted-media" referrerPolicy="strict-origin-when-cross-origin" aria-hidden="true" tabIndex={-1} onLoad={startMusicOnLoad} />
+    <button className="music-button" type="button" aria-label="Reproducir canción" title="Reproducir canción"><Music2 size={21} strokeWidth={1.7}/></button>
+    <iframe className="youtube-audio" ref={playerRef} title="Reproductor de música" src={youtubeEmbedUrl} allow="autoplay; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" aria-hidden="true" tabIndex={-1} loading="eager" onLoad={startMusicOnLoad} />
   </main>;
 }
 
