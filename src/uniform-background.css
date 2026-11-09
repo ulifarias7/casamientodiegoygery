@@ -1,0 +1,11 @@
+/* One continuous canvas across the page, with the RSVP invitation as its own panel. */
+main > section:not(.hero):not(.rsvp) {
+  background: #18291f;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+main > .footer {
+  background: #18291f;
+  border-top: 0;
+}

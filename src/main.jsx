@@ -17,5 +17,6 @@ import './song-suggestions.css';
 import './song-validation.css';
 import './browser-compat.css';
 import './dress-code-polish.css';
+import './uniform-background.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
